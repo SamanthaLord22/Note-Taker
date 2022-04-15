@@ -1,3 +1,8 @@
+const express = require('express');
+const fs = require('fs');
+
+app.use(express.static('public'));
+
 let noteTitle;
 let noteText;
 let saveNoteBtn;
