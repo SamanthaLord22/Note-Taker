@@ -1,9 +1,3 @@
-const express = require('express');
-const fs = require('fs');
-
-const app = express(); //added
-app.use(express.static('public'));
-
 let noteTitle;
 let noteText;
 let saveNoteBtn;
