@@ -1,8 +1,8 @@
-const util = require('util');
+
 const fs = require('fs');
-express = require('express');
-const app = express();
-const db = require("../db/db.json")
+
+const app = require("express").Router();
+let db = []
 
 // const uuid1 = require("uuid/v1");
 
@@ -19,17 +19,17 @@ const db = require("../db/db.json")
 //     }
 // }
 // //get notes(readNotes)
-// fs.readFile('db/db.json', function (err, note){
-//     console.log(note.toString());
-// });
+fs.readFile('db/db.json', function (err, note){
+   
+    db = JSON.parse(note) || []
+    console.log(db,"read")
+});
+
 app.get('/api/notes', function (req, res) {
-    fs.readFileSync('db/db.json', 'utf8', function (err, data) {
-        if (err) {
-            res.send({ error: err });
-        }
-        db = JSON.parse(data)
-        res.json(db)
-    })
+    console.log(GET)
+  db= JSON.parse(fs.readFileSync('db/db.json','utf-8')) ||[]
+   console.log("get",db)
+    res.json(db)
 });
 //add Notes
 app.post('/api/notes', function (req, res) {
@@ -46,6 +46,7 @@ app.post('/api/notes', function (req, res) {
     })
     res.json(db)
 });
+
 //delete notes
 app.delete('/api/notes/:id', function (req, res) {
     let temparr = []
